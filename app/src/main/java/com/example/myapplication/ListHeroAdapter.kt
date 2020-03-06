@@ -13,7 +13,11 @@ import com.example.myapplication.ListHeroAdapter.ListViewHolder
 import java.util.*
 
 class ListHeroAdapter(private val listHero: ArrayList<Hero>) : RecyclerView.Adapter<ListViewHolder>() {
+    companion object OnItemClickCallback {
+        fun onItemClicked(data: Hero) {}
+    }
     private var onItemClickCallBack: OnItemClickCallback? = null
+
     fun setOnItemClickCallBack(onItemClickCallBack: (Nothing) -> Unit) {
         this.onItemClickCallBack = OnItemClickCallback
     }
@@ -39,19 +43,12 @@ class ListHeroAdapter(private val listHero: ArrayList<Hero>) : RecyclerView.Adap
     }
 
     inner class ListViewHolder(itemView: View) : ViewHolder(itemView) {
-        var imgPhoto: ImageView
-        var tvName: TextView
-        var tvDetail: TextView
+        var imgPhoto: ImageView = itemView.findViewById(R.id.img_item_photo)
+        var tvName: TextView = itemView.findViewById(R.id.tv_item_name)
+        var tvDetail: TextView = itemView.findViewById(R.id.tv_item_detail)
 
-        init {
-            imgPhoto = itemView.findViewById(R.id.img_item_photo)
-            tvName = itemView.findViewById(R.id.tv_item_name)
-            tvDetail = itemView.findViewById(R.id.tv_item_detail)
-        }
     }
 
-    interface OnItemClickCallback {
-        fun onItemClicked(data: Hero?)
-    }
+
 
 }
